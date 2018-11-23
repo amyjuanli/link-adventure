@@ -18,6 +18,7 @@ Apache
 * Step 5: $git add . $ git commit ..
 * Step 5: create a Heroku git repository through command: $ heroku create
 * Step 6: push to this Heroku repository through command: $ git push heroku master
+  NOTICE: if you rename the deployed site name, you need also $ git remote add heroku https://git.heroku.com/linkadventure.git  for instance 
 * Step 7: If the project has MySQL database, migrate database to heroku hosting. (change hostname, username, password, to database.php file)
   
 ### Trouble shooting of Errors when deploying your project

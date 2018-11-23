@@ -99,12 +99,13 @@
         h3 {
             text-align: left;
         }
+        
         #boxes {
             grid-column: center-start / center-end;
-            margin: 15rem 0;
+            margin: 2rem 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-            grid-gap: 7rem; 
+            grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+            grid-gap: 3rem; 
         }
         #activities {
             text-align: left;
@@ -118,14 +119,14 @@
 
         }
         .box {
-            width: 25%;
+            /* width: 25%;
             height: auto;
             border: 2px solid black;
-            padding: 2px;
+            padding: 2px; */
             background-color: #f9f7f6;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-row-gap: 3.5rem; 
+            /* grid-row-gap: 3.5rem;  */
         }
         .box+.box{
             margin-left: 12px;
@@ -136,9 +137,28 @@
             grid-column: 1 / -1;
             z-index: 1; 
         }
+        .home__name {
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+            justify-self: center;
+            align-self: end;
+            z-index: 3;
+            width: 80%;
+            font-family: "Josefin Sans", sans-serif;
+            font-size: 1.6rem;
+            text-align: center;
+            padding: 1.25rem;
+            background-color: #101d2c;
+            color: #fff;
+            font-weight: 400;
+            transform: translateY(50%); 
+        }
 
+        .submit-form {
+            grid-column: 1 / -1;
+        }
         .submit-btn {
-            width: 60%;
+            width: 100%;
             font-size: .8em;
             border-radius: 5px;
             color: white;
@@ -177,44 +197,43 @@
         </div>
     </div>
 	<div class="container">
-		<h3>Rupees:
-			<?php 
+		<h3>Earned Rupees: 
+        <?php 
         if($this->session->userdata('money')) {
             echo $this->session->userdata('money');
         } else {
             echo 0;
-        }
-         ?>
+        }  ?>
 		</h3>
 		<div id="boxes">
 			<div class="box">
-                <img src="./img/cut-grass.jpg" alt="cut grass" class="home__img">
+                <img src="https://i.kinja-img.com/gawker-media/image/upload/s--toe3JluJ--/c_scale,fl_progressive,q_80,w_800/m6oqeutk03vhdq07uwfg.jpg" alt="cut grass" class="home__img">
                 <h5 class="home__name">Earns 1 - 5</h5>
-				<form action="/main/process_money" method="post">
+				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="grass" value="grass" />
 					<input class="submit-btn" type="submit" value="Cut Grass" />
 				</form>
 			</div>
 			<div class="box">
-            <img src="./img/chest.png" alt="Open Chest" class="home__img">
+            <img src="https://i.stack.imgur.com/StVzw.png" alt="Open Chest" class="home__img">
 				<h5 class="home__name">earns 5 - 20</h5>
-				<form action="/main/process_money" method="post">
+				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="chest" value="chest" />
 					<input class="submit-btn" type="submit" value="Open Chest" />
 				</form>
 			</div>
 			<div class="box">
-            <img src="./img/mission.jpg" alt="Mission" class="home__img">
+            <img src="https://www.nordichardware.se/wp-content/uploads/Breath-of-the-Wild.jpg" alt="Mission" class="home__img">
 				<h5 class="home__name">earns/takes 0 - 30</h5>
-				<form action="/main/process_money" method="post">
+				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="mission" value="mission" />
 					<input class="submit-btn" type="submit" value="Mission" />
 				</form>
 			</div>
 			<div class="box">
-            <img src="./img/battle.png" alt="Battle" class="home__img">
-				<p>earns/takes 0 - 50</p>
-				<form action="/main/process_money" method="post">
+            <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2017/03/Header-Zelda-Boss-Collage.jpeg" alt="Battle" class="home__img">
+				<h5 class="home__name">earns/takes 0 - 50</h5>
+				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="battle" value="battle" />
 					<input class="submit-btn" type="submit" value="Battle" />
 				</form>
