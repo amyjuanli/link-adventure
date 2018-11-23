@@ -11,11 +11,11 @@
             background-color: #efefef;
             text-align: center;
             font-size: 1.4em;
-            height: 100vh;
             font-family: "Lato", sans-serif;
+            padding: 30px;
         }
         .header {
-            height: 30vh;
+            height: 90vh;
             background-image: linear-gradient(to right, rgba(45, 200, 19, 0.8), rgba(40, 180, 133, 0.8)), url('https://www.dailydot.com/wp-content/uploads/725/b6/ab675a0316702ef0-2048x1024.jpg');
             background-size: cover;
             background-position: center;
@@ -91,7 +91,7 @@
             }
         }
 
-        .container {
+        #container {
             width: 95%;
             margin: 10px;
             padding: 6px;
@@ -104,7 +104,7 @@
             grid-column: center-start / center-end;
             margin: 2rem 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
             grid-gap: 3rem; 
         }
         #activities {
@@ -112,21 +112,16 @@
             color: green;
             border: 2px solid black;
             width: 100%;
-            height: 50vh;
+            height: 35vh;
             overflow: auto;
             margin: auto;
             padding-left: 6px;
 
         }
         .box {
-            /* width: 25%;
-            height: auto;
-            border: 2px solid black;
-            padding: 2px; */
             background-color: #f9f7f6;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* grid-row-gap: 3.5rem;  */
         }
         .box+.box{
             margin-left: 12px;
@@ -182,7 +177,52 @@
         #destroy-btn:hover {
             cursor: pointer;
         }
-        
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 15px 40px;
+            display: inline-block; 
+            /* always change inline element to inline-block if you want to add patterns: 
+            width, height, and using text-align which affects inline or inline-block elements
+            in the container element, etc.*/
+            border-radius: 100px;
+            position: relative;
+            animation: moveInBottom .5s ease-out .7s;
+            animation-fill-mode: backwards;
+
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            /* just for fun to change the width to 400px when hover  width: 400px; */
+            box-shadow: 0 10px 20px rgba(0,0,0, 0.2) 
+        }
+        /* when button is clicked */
+        .btn:active {
+            transform: translateY(-1px);
+            /* height: 100px; */
+            /* box-shadow: 0 5px 10px rgba(0,0,0, 0.2)   */
+        }
+        .btn-white {
+            background-color:#fff;
+            color: #777;
+        }
+        .btn::after {
+            content: '';
+            background-color: white;
+            width: 100%;
+            height: 100%; 
+            border-radius: 100px;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: -1;
+        }
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+
 
     </style>
 </head>
@@ -194,9 +234,10 @@
                 <span class="heading-primary-main">Zelda II</span>
                 <span class="heading-primary-sub">The adventure of Link</span>
             </h1>
+            <a href="#container" class="btn btn-white">start game</a>
         </div>
     </div>
-	<div class="container">
+	<div id="container">
 		<h3>Earned Rupees: 
         <?php 
         if($this->session->userdata('money')) {
@@ -212,11 +253,11 @@
 				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="grass" value="grass" />
 					<input class="submit-btn" type="submit" value="Cut Grass" />
-				</form>
+                </form>
 			</div>
 			<div class="box">
             <img src="https://i.stack.imgur.com/StVzw.png" alt="Open Chest" class="home__img">
-				<h5 class="home__name">earns 5 - 20</h5>
+				<h5 class="home__name">Earns 5 - 20</h5>
 				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="chest" value="chest" />
 					<input class="submit-btn" type="submit" value="Open Chest" />
@@ -224,7 +265,7 @@
 			</div>
 			<div class="box">
             <img src="https://www.nordichardware.se/wp-content/uploads/Breath-of-the-Wild.jpg" alt="Mission" class="home__img">
-				<h5 class="home__name">earns/takes 0 - 30</h5>
+				<h5 class="home__name">Earns/takes 0 - 30</h5>
 				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="mission" value="mission" />
 					<input class="submit-btn" type="submit" value="Mission" />
@@ -232,7 +273,7 @@
 			</div>
 			<div class="box">
             <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2017/03/Header-Zelda-Boss-Collage.jpeg" alt="Battle" class="home__img">
-				<h5 class="home__name">earns/takes 0 - 50</h5>
+				<h5 class="home__name">Earns/takes 0 - 50</h5>
 				<form class="submit-form" action="/main/process_money" method="post">
 					<input type="hidden" name="battle" value="battle" />
 					<input class="submit-btn" type="submit" value="Battle" />
@@ -241,7 +282,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<h3>Activity log: </h3>
+		<h3>Activity Log </h3>
 		<div id="activities">
 			<?php 
         if($this->session->userdata('activities')) {
@@ -258,7 +299,7 @@
 		<form action="/main/process_money" method="post">
 			<input id="destroy-btn" type="submit" value="Restart Game" name="destroy_session">
 		</form>
-	</div>
+    </div>
 </body>
 
 </html

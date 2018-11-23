@@ -8,7 +8,6 @@ class Main extends CI_Controller {
     public function process_money() {
         if(!$this->session->userdata('money')) {
             $this->session->set_userdata('money', 0);
-       
         }
         if(!$this->session->userdata('activities')) {
             $this->session->set_userdata('activities', Array());
@@ -60,6 +59,6 @@ class Main extends CI_Controller {
             $this->session->unset_userdata('money');
         }
 
-        redirect('/');
+        redirect('/#container');
     }
 }
