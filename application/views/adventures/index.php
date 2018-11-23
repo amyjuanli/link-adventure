@@ -100,12 +100,11 @@
             text-align: left;
         }
         #boxes {
-            width: 100%;
-            margin: auto;
-            display: flex;
-            text-align: center;
-            border: 1px black solid;
-            flex-wrap: nowrap;
+            grid-column: center-start / center-end;
+            margin: 15rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            grid-gap: 7rem; 
         }
         #activities {
             text-align: left;
@@ -123,11 +122,21 @@
             height: auto;
             border: 2px solid black;
             padding: 2px;
- 
+            background-color: #f9f7f6;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-row-gap: 3.5rem; 
         }
         .box+.box{
             margin-left: 12px;
         }
+        .home__img {
+            width: 100%;
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+            z-index: 1; 
+        }
+
         .submit-btn {
             width: 60%;
             font-size: .8em;
@@ -167,9 +176,6 @@
             </h1>
         </div>
     </div>
-    <!-- <h1 id="title">Zelda mini game: Link Adventure</h1> -->
-
-    <!-- <p>Please help <strong>Link</strong> get some Rupees</p> -->
 	<div class="container">
 		<h3>Rupees:
 			<?php 
@@ -182,27 +188,31 @@
 		</h3>
 		<div id="boxes">
 			<div class="box">
-				<p>earns 1 - 5</p>
+                <img src="./img/cut-grass.jpg" alt="cut grass" class="home__img">
+                <h5 class="home__name">Earns 1 - 5</h5>
 				<form action="/main/process_money" method="post">
 					<input type="hidden" name="grass" value="grass" />
 					<input class="submit-btn" type="submit" value="Cut Grass" />
 				</form>
 			</div>
 			<div class="box">
-				<p>earns 5 - 20</p>
+            <img src="./img/chest.png" alt="Open Chest" class="home__img">
+				<h5 class="home__name">earns 5 - 20</h5>
 				<form action="/main/process_money" method="post">
 					<input type="hidden" name="chest" value="chest" />
 					<input class="submit-btn" type="submit" value="Open Chest" />
 				</form>
 			</div>
 			<div class="box">
-				<p>earns/takes 0 - 30</p>
+            <img src="./img/mission.jpg" alt="Mission" class="home__img">
+				<h5 class="home__name">earns/takes 0 - 30</h5>
 				<form action="/main/process_money" method="post">
 					<input type="hidden" name="mission" value="mission" />
 					<input class="submit-btn" type="submit" value="Mission" />
 				</form>
 			</div>
 			<div class="box">
+            <img src="./img/battle.png" alt="Battle" class="home__img">
 				<p>earns/takes 0 - 50</p>
 				<form action="/main/process_money" method="post">
 					<input type="hidden" name="battle" value="battle" />
